@@ -49,7 +49,6 @@ function carClass(carPic) {
 			  /([a-z,A-Z-]*)\.[a-z]*$/.exec(this.carPic.src)[1] +
 				" hit the goal line";
 			p1.initCar();
-			p2.initCar();
 		} else {
 			this.carSpeed *= -0.5;
 		}
