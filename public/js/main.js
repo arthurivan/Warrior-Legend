@@ -1,16 +1,16 @@
 var canvas, cx;
 //setup
-var p1 = new warriorClass(carPic);
+var p1 = new warriorClass(playerPic);
 
 function moveEverything() {
-	p1.carMove();
+	p1.move();
 }
 
 function drawEverything() {
 	//Tracks
 	drawTracks();
-	//car
-	p1.carDraw();
+	//
+	p1.draw();
 
 }
 
@@ -19,7 +19,7 @@ window.onload = function() {
 	cx = canvas.getContext('2d');
 
 	initInput();
-	p1.initCar();
+	p1.init();
 	loadImages();
 
 }
