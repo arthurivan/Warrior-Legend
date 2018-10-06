@@ -1,5 +1,4 @@
 var playerPic = document.createElement('img');
-var playerPic2 = document.createElement('img');
 
 var trackPics = [];
 
@@ -25,14 +24,13 @@ function beginLoadingImages(imgVar, fileName) {
 
 function loadImages() {
 	var imageList = [
-		{varName: playerPic, theFile: "images/white-car.png"},
-		{varName: playerPic2, theFile: "images/yellow-car.png"},
+		{varName: playerPic, theFile: "images/warrior.png"},
 
 		{trackType: TRACK_ROAD, theFile: "images/road.png"},
-		{trackType: TRACK_TREE1, theFile: "images/tree1.png"},
-		{trackType: TRACK_TREE2, theFile: "images/tree2.png"},
-		{trackType: TRACK_FINISHLINE, theFile: "images/finishLine.png"},
-		{trackType: TRACK_WALL, theFile: "images/block.png"}
+		{trackType: TRACK_TREE1, theFile: "images/key.png"},
+		{trackType: TRACK_TREE2, theFile: "images/door.png"},
+		{trackType: TRACK_FINISHLINE, theFile: "images/goal.png"},
+		{trackType: TRACK_WALL, theFile: "images/wall.png"}
 	];
 	picsToLoad = imageList.length;
 
