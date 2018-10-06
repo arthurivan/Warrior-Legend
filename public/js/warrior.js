@@ -4,7 +4,7 @@ const REVERSE_POWER = 0.2;
 const TURN_RATE = 0.03;
 const MIN_TURN_SPEED = 0.5;
 
-function carClass(carPic) {
+function warriorClass(carPic) {
 	//car size
 	this.carW = 30;
 	this.carH = 25;

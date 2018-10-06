@@ -1,6 +1,6 @@
 var canvas, cx;
 //setup
-var p1 = new carClass(carPic);
+var p1 = new warriorClass(carPic);
 
 function moveEverything() {
 	p1.carMove();
