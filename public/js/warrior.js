@@ -1,8 +1,4 @@
-const GROUNDSPEED_DECAY_MULT = 0.94;
-const DRIVE_POWER = 0.3;
-const REVERSE_POWER = 0.2;
-const TURN_RATE = 0.03;
-const MIN_TURN_SPEED = 0.5;
+const PLAYER_MOVE_SPEED = 3.0;
 
 function warriorClass(pic) {
 	//car size
@@ -17,27 +13,22 @@ function warriorClass(pic) {
 	this.keyHeldSouth = false;
 	//checks every turn to see key states
 	this.move = function() {
+		//checks possible future position for road or finishline
+		var nextX = this.x;
+		var nextY = this.y;
 		if (this.keyHeldWest) {
-			if (this.speed > MIN_TURN_SPEED ||
-					this.speed < -MIN_TURN_SPEED) {
-				this.ang -= TURN_RATE*Math.PI;
-			}
+			nextX -= PLAYER_MOVE_SPEED;
 		}
 		if (this.keyHeldNorth) {
-				this.speed += DRIVE_POWER;
+			nextY -= PLAYER_MOVE_SPEED;
 		}
 		if (this.keyHeldEast) {
-			if (this.speed > MIN_TURN_SPEED ||
-				  this.speed < -MIN_TURN_SPEED) {
-				this.ang += TURN_RATE*Math.PI;
-			}
+			nextX += PLAYER_MOVE_SPEED;
 		}
 		if (this.keyHeldSouth) {
-			this.speed -= REVERSE_POWER;
+			nextY += PLAYER_MOVE_SPEED;
+
 		}
-		//checks possible future position for road or finishline
-		var nextX = this.x + Math.cos(this.ang) * this.speed;
-		var nextY = this.y + Math.sin(this.ang) * this.speed;
 		
 		var drivingIntoTileType = getTrackAtPixelCoord(nextX,nextY);
 
@@ -49,11 +40,7 @@ function warriorClass(pic) {
 			  /([a-z,A-Z-]*)\.[a-z]*$/.exec(this.pic.src)[1] +
 				" hit the goal line";
 			p1.init();
-		} else {
-			this.speed *= -0.5;
 		}
-		this.speed *= GROUNDSPEED_DECAY_MULT;
-		console.log(this.speed);
 	}
 
 	this.setupControls = function(westKey, northKey, eastKey, southKey) {
@@ -77,13 +64,11 @@ function warriorClass(pic) {
 		}
 						this.x = this.homeX;
 						this.y = this.homeY;
-						this.speed = 0;
-						this.ang = -0.5 * Math.PI;
 	}
 
 	this.draw = function() {
 
-		drawBitmapCenteredWithRotation(this.pic, this.x,this.y, this.w,this.h, this.ang);
+		drawBitmapCenteredWithRotation(this.pic, this.x,this.y, this.w,this.h, 0.0);
 	}
 
 }
