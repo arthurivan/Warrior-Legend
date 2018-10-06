@@ -10,23 +10,23 @@ function initInput() {
     p1.setupControls(KEY_LEFT_ARROW, KEY_UP_ARROW, KEY_RIGHT_ARROW, KEY_DOWN_ARROW);
 }
 
-function setKeyHoldState(thisKey, thisCar, setTo) {
+function setKeyHoldState(thisKey, thisPlayer, setTo) {
 	switch(thisKey) {
     //left
-    case thisCar.controlKeyLeft:
-    		thisCar.keyLeft = setTo;
+    case thisPlayer.controlKeyWest:
+    		thisPlayer.keyHeldWest = setTo;
         break;
 	//up
-    case thisCar.controlKeyUp:
-    		thisCar.keyUp = setTo;
+    case thisPlayer.controlKeyNorth:
+    		thisPlayer.keyHeldNorth = setTo;
         break;
     //right
-    case thisCar.controlKeyRight:
-    		thisCar.keyRight = setTo;
+    case thisPlayer.controlKeyEast:
+    		thisPlayer.keyHeldEast = setTo;
         break;
     //down
-    case thisCar.controlKeyDown:
-    		thisCar.keyDown = setTo;
+    case thisPlayer.controlKeySouth:
+    		thisPlayer.keyHeldSouth = setTo;
         break;
     default:
         break;

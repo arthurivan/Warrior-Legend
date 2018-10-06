@@ -11,28 +11,28 @@ function warriorClass(pic) {
 	//pic
 	this.pic = pic;
 	//control states
-	this.keyLeft = false;
-	this.keyUp = false;
-	this.keyRight = false;
-	this.keyDown = false;
+	this.keyHeldWest = false;
+	this.keyHeldNorth = false;
+	this.keyHeldEast = false;
+	this.keyHeldSouth = false;
 	//checks every turn to see key states
 	this.move = function() {
-		if (this.keyLeft) {
+		if (this.keyHeldWest) {
 			if (this.speed > MIN_TURN_SPEED ||
 					this.speed < -MIN_TURN_SPEED) {
 				this.ang -= TURN_RATE*Math.PI;
 			}
 		}
-		if (this.keyUp) {
+		if (this.keyHeldNorth) {
 				this.speed += DRIVE_POWER;
 		}
-		if (this.keyRight) {
+		if (this.keyHeldEast) {
 			if (this.speed > MIN_TURN_SPEED ||
 				  this.speed < -MIN_TURN_SPEED) {
 				this.ang += TURN_RATE*Math.PI;
 			}
 		}
-		if (this.keyDown) {
+		if (this.keyHeldSouth) {
 			this.speed -= REVERSE_POWER;
 		}
 		//checks possible future position for road or finishline
@@ -56,11 +56,11 @@ function warriorClass(pic) {
 		console.log(this.speed);
 	}
 
-	this.setupControls = function(leftKey, upKey, rightKey, downKey) {
-		this.controlKeyLeft = leftKey;
-		this.controlKeyUp = upKey;
-		this.controlKeyRight = rightKey;
-		this.controlKeyDown = downKey;
+	this.setupControls = function(westKey, northKey, eastKey, southKey) {
+		this.controlKeyWest = westKey;
+		this.controlKeyNorth = northKey;
+		this.controlKeyEast = eastKey;
+		this.controlKeySouth = southKey;
 	}
 
 	this.init = function() {
