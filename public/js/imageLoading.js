@@ -26,7 +26,7 @@ function loadImages() {
 	var imageList = [
 		{varName: playerPic, theFile: "images/warrior.png"},
 
-		{tileType: TILE_GROUND, theFile: "images/road.png"},
+		{tileType: TILE_GROUND, theFile: "images/ground.png"},
 		{tileType: TILE_KEY, theFile: "images/key.png"},
 		{tileType: TILE_DOOR, theFile: "images/door.png"},
 		{tileType: TILE_GOAL, theFile: "images/goal.png"},

@@ -48,8 +48,13 @@ function drawRoom() {
 
 			var tileType = roomGrid[tileIndex];
 
-			cx.drawImage(tilePics[tileType], tileLeftEdgeX,tileTopEdgeY, TILE_W,TILE_H);	
-
+			if (tileType == TILE_KEY ||
+				  tileType == TILE_DOOR ||
+				  tileType == TILE_GOAL) {
+				cx.drawImage(tilePics[TILE_GROUND], tileLeftEdgeX,tileTopEdgeY, TILE_W,TILE_H);
+			}
+			cx.drawImage(tilePics[tileType], tileLeftEdgeX,tileTopEdgeY, TILE_W,TILE_H);
+			
 			tileIndex++;
 			tileLeftEdgeX += TILE_W;
 		}
