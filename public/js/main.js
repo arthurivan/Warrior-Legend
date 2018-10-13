@@ -7,8 +7,8 @@ function moveEverything() {
 }
 
 function drawEverything() {
-	//Tracks
-	drawTracks();
+	//Tiles
+	drawRoom();
 	//
 	p1.draw();
 

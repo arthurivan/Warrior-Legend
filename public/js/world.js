@@ -1,58 +1,59 @@
-//track wall
-const TRACK_W = 50;
-const TRACK_H = 50;
-const TRACK_COLS = 16;
-const TRACK_ROWS = 12;
+//tile wall
+const ROOM_COLS = 16;
+const ROOM_ROWS = 12;
 
-const TRACK_ROAD = 0;
-const TRACK_WALL = 1;
-const TRACK_PLAYERSTART = 2;
-const TRACK_TREE1 = 3;
-const TRACK_TREE2 = 4;
-const TRACK_FINISHLINE = 5;
-
-var trackGrid = [ 3, 3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+var roomGrid = [ 3, 3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
 			            4, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
 			            1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
 			            1, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
 			            1, 0, 0, 0, 1, 1, 1, 1, 3, 4, 3, 1, 1, 1, 1, 1,
 			            1, 0, 0, 1, 1, 0, 0, 1, 1, 3, 1, 1, 0, 0, 0, 1,
 			            1, 0, 0, 1, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 1,
-			            1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1,
+			            1, 5, 0, 1, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1,
 			            1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 1,
 			            1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1, 0, 1,
 			            1, 2, 0, 1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 1, 0, 1,
 			            1, 1, 1, 1, 1, 1, 1, 4, 3, 3, 4, 3, 3, 4, 1, 1];
 
+const TILE_W = 50;
+const TILE_H = 50;
 
-function trackTileToIndex(tileCol, tileRow) {
-	return tileCol + tileRow*TRACK_COLS;
+const TILE_GROUND = 0;
+const TILE_WALL = 1;
+const TILE_PLAYER = 2;
+const TILE_KEY = 3;
+const TILE_DOOR = 4;
+const TILE_GOAL = 5;
+
+function roomTileToIndex(tileCol, tileRow) {
+	return tileCol + tileRow*ROOM_COLS;
 }
 
-function getTrackAtPixelCoord(carX,carY) {
-	var trackTileCol = Math.floor(carX/TRACK_W);
-	var trackTileRow = Math.floor(carY/TRACK_H);
+function getTileAtPixelCoord(pixelX,pixelY) {
+	var tileCol = Math.floor(pixelX/TILE_W);
+	var tileRow = Math.floor(pixelY/TILE_H);
 
-	var trackIndex = trackTileToIndex(trackTileCol, trackTileRow);
-	return trackGrid[trackIndex];
+	var tileIndex = roomTileToIndex(tileCol, tileRow);
+	return roomGrid[tileIndex];
 }
 
-function drawTracks() {
-	var trackIndex = 0;
-	var trackTopEdgeY = 0;
+function drawRoom() {
+	var tileIndex = 0;
+	var tileLeftEdgeX = 0;
+	var tileTopEdgeY = 0;
 
-	for (var i = 0; i < TRACK_ROWS; i++) {
-		var trackLeftEdgeX = 0;
-		for (var j = 0; j < TRACK_COLS; j++) {
+	for (var i = 0; i < ROOM_ROWS; i++) {
+		tileLeftEdgeX = 0;
+		for (var j = 0; j < ROOM_COLS; j++) {
 
-			var trackType = trackGrid[trackIndex];
+			var tileType = roomGrid[tileIndex];
 
-			cx.drawImage(trackPics[trackType], trackLeftEdgeX,trackTopEdgeY, TRACK_W,TRACK_H);	
+			cx.drawImage(tilePics[tileType], tileLeftEdgeX,tileTopEdgeY, TILE_W,TILE_H);	
 
-			trackIndex++;
-			trackLeftEdgeX += TRACK_W;
+			tileIndex++;
+			tileLeftEdgeX += TILE_W;
 		}
 		
-		trackTopEdgeY += TRACK_H;
+		tileTopEdgeY += TILE_H;
 	}
 }

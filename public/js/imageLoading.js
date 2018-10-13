@@ -1,6 +1,6 @@
 var playerPic = document.createElement('img');
 
-var trackPics = [];
+var tilePics = [];
 
 var picsToLoad = 0;
 
@@ -11,9 +11,9 @@ function countLoadedImageAndLaunchIfReady() {
 	}
 }
 
-function loadImageForTrackCode(trackCode, fileName) {
-	trackPics[trackCode] = document.createElement('img');
-	beginLoadingImages(trackPics[trackCode], fileName);
+function loadImageForTileCode(tileCode, fileName) {
+	tilePics[tileCode] = document.createElement('img');
+	beginLoadingImages(tilePics[tileCode], fileName);
 }
 
 function beginLoadingImages(imgVar, fileName) {
@@ -26,18 +26,18 @@ function loadImages() {
 	var imageList = [
 		{varName: playerPic, theFile: "images/warrior.png"},
 
-		{trackType: TRACK_ROAD, theFile: "images/road.png"},
-		{trackType: TRACK_TREE1, theFile: "images/key.png"},
-		{trackType: TRACK_TREE2, theFile: "images/door.png"},
-		{trackType: TRACK_FINISHLINE, theFile: "images/goal.png"},
-		{trackType: TRACK_WALL, theFile: "images/wall.png"}
+		{tileType: TILE_GROUND, theFile: "images/road.png"},
+		{tileType: TILE_KEY, theFile: "images/key.png"},
+		{tileType: TILE_DOOR, theFile: "images/door.png"},
+		{tileType: TILE_GOAL, theFile: "images/goal.png"},
+		{tileType: TILE_WALL, theFile: "images/wall.png"}
 	];
 	picsToLoad = imageList.length;
 
 	for (var i = 0; i < imageList.length; i++) {
-		if (imageList[i].trackType !== undefined) {
-			//track tiles
-			loadImageForTrackCode(imageList[i].trackType, imageList[i].theFile)
+		if (imageList[i].tileType !== undefined) {
+			//tile tiles
+			loadImageForTileCode(imageList[i].tileType, imageList[i].theFile)
 		} else {
 			//pic
 			beginLoadingImages(imageList[i].varName, imageList[i].theFile);

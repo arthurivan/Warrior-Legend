@@ -30,12 +30,12 @@ function warriorClass(pic) {
 
 		}
 		
-		var drivingIntoTileType = getTrackAtPixelCoord(nextX,nextY);
+		var drivingIntoTileType = getTileAtPixelCoord(nextX,nextY);
 
-		if (drivingIntoTileType == TRACK_ROAD) {
+		if (drivingIntoTileType == TILE_GROUND) {
 			this.x = nextX;
 			this.y = nextY;
-		} else if (drivingIntoTileType == TRACK_FINISHLINE) {
+		} else if (drivingIntoTileType == TILE_GOAL) {
 			document.getElementById('debugText').innerHTML =
 			  /([a-z,A-Z-]*)\.[a-z]*$/.exec(this.pic.src)[1] +
 				" hit the goal line";
@@ -53,11 +53,11 @@ function warriorClass(pic) {
 	this.init = function() {
 		//search for location in grid
 		if (this.homeX == undefined) {
-			for (var i = 0; i < trackGrid.length; i++) {
-				if (trackGrid[i] == TRACK_PLAYERSTART) {
-						trackGrid[i] = 0;
-						this.homeX = (i % TRACK_COLS) * TRACK_W + TRACK_W/2;
-						this.homeY = Math.floor(i / TRACK_COLS) * TRACK_H + TRACK_H/2;
+			for (var i = 0; i < roomGrid.length; i++) {
+				if (roomGrid[i] == TILE_PLAYER) {
+						roomGrid[i] = 0;
+						this.homeX = (i % ROOM_COLS) * TILE_W + TILE_W/2;
+						this.homeY = Math.floor(i / ROOM_COLS) * TILE_H + TILE_H/2;
 						break;
 					}
 			}
