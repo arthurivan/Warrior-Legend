@@ -30,17 +30,30 @@ function warriorClass(pic) {
 
 		}
 		
-		var drivingIntoTileType = getTileAtPixelCoord(nextX,nextY);
+		var walkingIntoTileIndex = getTileIndexAtPixelCoord(nextX,nextY);
+		var walkingIntoTileType = TILE_WALL;
 
-		if (drivingIntoTileType == TILE_GROUND) {
+		if (walkingIntoTileIndex != undefined) {
+			walkingIntoTileType = roomGrid[walkingIntoTileIndex];
+		}
+
+		if (walkingIntoTileType == TILE_GROUND) {
 			this.x = nextX;
 			this.y = nextY;
-		} else if (drivingIntoTileType == TILE_GOAL) {
+		} else if (walkingIntoTileType == TILE_KEY) {
+			this.keysHeld++;
+			roomGrid[walkingIntoTileIndex] = 0;
+		} else if (walkingIntoTileType == TILE_DOOR && this.keysHeld > 0) {
+			this.keysHeld--;
+			roomGrid[walkingIntoTileIndex] = 0;
+		} else if (walkingIntoTileType == TILE_GOAL) {
 			document.getElementById('debugText').innerHTML =
 			  /([a-z,A-Z-]*)\.[a-z]*$/.exec(this.pic.src)[1] +
 				" hit the goal line";
 			p1.init();
 		}
+
+
 	}
 
 	this.setupControls = function(westKey, northKey, eastKey, southKey) {
@@ -51,6 +64,7 @@ function warriorClass(pic) {
 	}
 
 	this.init = function() {
+		this.keysHeld = 0;
 		//search for location in grid
 		if (this.homeX == undefined) {
 			for (var i = 0; i < roomGrid.length; i++) {

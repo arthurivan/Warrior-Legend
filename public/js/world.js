@@ -37,12 +37,18 @@ function roomTileToIndex(tileCol, tileRow) {
 	return tileCol + tileRow*ROOM_COLS;
 }
 
-function getTileAtPixelCoord(pixelX,pixelY) {
+function getTileIndexAtPixelCoord(pixelX,pixelY) {
 	var tileCol = Math.floor(pixelX/TILE_W);
 	var tileRow = Math.floor(pixelY/TILE_H);
 
+	if (tileCol < 0 || tileCol > ROOM_COLS ||
+		  tileRow < 0 || tileRow > ROOM_ROWS) {
+		document.getElementById('debugText').innerHTML = 'out of bounds';
+		return undefined;
+	}
+
 	var tileIndex = roomTileToIndex(tileCol, tileRow);
-	return roomGrid[tileIndex];
+	return tileIndex;
 }
 
 function drawRoom() {
