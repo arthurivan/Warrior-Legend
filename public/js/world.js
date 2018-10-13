@@ -25,6 +25,12 @@ const TILE_KEY = 3;
 const TILE_DOOR = 4;
 const TILE_GOAL = 5;
 
+function tileTypeHasTransparency(checkTileType) {
+	return (checkTileType == TILE_KEY ||
+				  checkTileType == TILE_DOOR ||
+				  checkTileType == TILE_GOAL);
+}
+
 function roomTileToIndex(tileCol, tileRow) {
 	return tileCol + tileRow*ROOM_COLS;
 }
@@ -48,13 +54,11 @@ function drawRoom() {
 
 			var tileType = roomGrid[tileIndex];
 
-			if (tileType == TILE_KEY ||
-				  tileType == TILE_DOOR ||
-				  tileType == TILE_GOAL) {
+			if (tileTypeHasTransparency(tileType)) {
 				cx.drawImage(tilePics[TILE_GROUND], tileLeftEdgeX,tileTopEdgeY, TILE_W,TILE_H);
 			}
 			cx.drawImage(tilePics[tileType], tileLeftEdgeX,tileTopEdgeY, TILE_W,TILE_H);
-			
+
 			tileIndex++;
 			tileLeftEdgeX += TILE_W;
 		}
